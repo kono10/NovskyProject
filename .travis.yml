@@ -1,0 +1,36 @@
+sudo: required
+language: python
+services:
+  - docker
+
+before_install:
+  - echo "======== before install ========"
+
+install:
+  - pip install -r myproject/requirements.txt
+
+script:
+  - python myproject/manage.py test myapp
+
+after_success:
+  - python myproject/manage.py collecstatic
+  - docker build -t novskytech/djangoproject ./myproject --no-cache
+  - docker build -t novskytech/djangonginx ./nginx --no-cache
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push novskytech/djangoproject
+  - docker push novskytech/djangonginx
+
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  region: "us-east-2"
+  app: "django-app-template"
+  env: "Djangoapptemplate-env"
+  bucket_name: "elasticbeanstalk-us-east-2-524057441336"
+  bucket_path: "django-app-template"
+  on:
+    branch: main
+
+after_deploy:
+  - echo "======== done deploying !!!! ========"

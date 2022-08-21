@@ -1,0 +1,16 @@
+version: '3'
+services:
+  web:
+    build:
+      context: ./myproject
+    ports:
+      - '8001:8000'
+    environment:
+      - SECRET_KEY=testkey
+  nginx:
+    depends_on:
+      - web
+    build:
+      context: ./nginx
+    ports:
+      - '80:80'
