@@ -1,0 +1,10 @@
+{% if latest_visual_list %}
+    <ul>
+    {% for visual in latest_visual_list %}
+		<li><a href="{% url 'visuals:detail' visual.id %}">{{ visual.visual_name }}</a></li>
+
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No visual are available.</p>
+{% endif %}

@@ -1,0 +1,6 @@
+<h1>{{ visual.visual_name }}</h1>
+<ul>
+{% for tag in visual.tags.all %}
+    <li>{{ tag }}</li>
+{% endfor %}
+</ul>
