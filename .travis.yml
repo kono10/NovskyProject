@@ -10,7 +10,7 @@ install:
   - pip install -r NovskyProject/requirements.txt
 
 script:
-  - python NovskyProject/manage.py test myapp
+  - python NovskyProject/manage.py test visuals
 
 after_success:
   - docker build -t novskytech/novskyproject ./NovskyProject --no-cache
