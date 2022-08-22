@@ -7,28 +7,28 @@ before_install:
   - echo "======== before install ========"
 
 install:
-  - pip install -r myproject/requirements.txt
+  - pip install -r requirements.txt
 
 script:
-  - python myproject/manage.py test myapp
+  - python NovskyProject/manage.py test myapp
 
 after_success:
   - python myproject/manage.py collecstatic
-  - docker build -t novskytech/djangoproject ./myproject --no-cache
-  - docker build -t novskytech/djangonginx ./nginx --no-cache
+  - docker build -t novskytech/novskyproject ./NovskyProject --no-cache
+  - docker build -t novskytech/novskyprojectnginx ./nginx --no-cache
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push novskytech/djangoproject
-  - docker push novskytech/djangonginx
+  - docker push novskytech/novskyproject
+  - docker push novskytech/novskyprojectnginx
 
 deploy:
   provider: elasticbeanstalk
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
   region: "us-east-2"
-  app: "django-app-template"
-  env: "Djangoapptemplate-env"
+  app: "novskyproject"
+  env: "Novskyproject-env"
   bucket_name: "elasticbeanstalk-us-east-2-524057441336"
-  bucket_path: "django-app-template"
+  bucket_path: "novskyproject"
   on:
     branch: main
 
