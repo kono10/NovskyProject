@@ -1,4 +1,30 @@
-## Start up the django development server for local testing
+### Development Setup Instructions
+____
+
+Install pip
+`apt install python3-pip`
+
+Install vitualenv
+`pip3 install virtualenv`
+
+Create a virtual environment
+`virtualenv djangoEnv -p python3`
+
+Activate the environment
+`source djangoEnv/bin/activate`
+ 
+Install Django
+`pip install django`
+ 
+Setup Django Db
+`cd jake_project/jake_project/`
+`python manage.py migrate`
+ 
+Create A User
+`python manage.py createsuperuser`
+
+
+## Start up the django docker development server for local testing
 * accessed from localhost:8001
 ```
 ❯ pwd
