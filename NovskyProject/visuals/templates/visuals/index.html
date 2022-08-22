@@ -16,7 +16,7 @@
 		<a href="{% url 'visuals:detail' visual.id %}" style="text-decoration: solid; color:black;">{{ visual.name }}</a>
 	</h3>
 	<p>
-	tags:
+	Tags:
 		{% for tag in visual.tags.all %}
 				<span class="badge">{{ tag }}</span>
 		{% endfor %}
