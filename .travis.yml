@@ -7,13 +7,12 @@ before_install:
   - echo "======== before install ========"
 
 install:
-  - pip install -r requirements.txt
+  - pip install -r NovskyProject/requirements.txt
 
 script:
   - python NovskyProject/manage.py test myapp
 
 after_success:
-  - python myproject/manage.py collecstatic
   - docker build -t novskytech/novskyproject ./NovskyProject --no-cache
   - docker build -t novskytech/novskyprojectnginx ./nginx --no-cache
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
