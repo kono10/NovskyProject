@@ -1,10 +1,29 @@
+<head>
+  <title>NovskyProject - Visuals</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body style="padding:10px;">
+<h1> Visuals </h1>
+<hr>
+<div style="padding:25px;">
 {% if latest_visual_list %}
-    <ul>
     {% for visual in latest_visual_list %}
-		<li><a href="{% url 'visuals:detail' visual.id %}">{{ visual.visual_name }}</a></li>
-
+	<h3>
+		<a href="{% url 'visuals:detail' visual.id %}" style="text-decoration: solid; color:black;">{{ visual.name }}</a>
+	</h3>
+	<p>
+	tags:
+		{% for tag in visual.tags.all %}
+				<span class="badge">{{ tag }}</span>
+		{% endfor %}
+	</p>
     {% endfor %}
-    </ul>
 {% else %}
     <p>No visual are available.</p>
 {% endif %}
+</div>
+<body>
