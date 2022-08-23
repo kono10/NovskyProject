@@ -37,7 +37,7 @@ Create A User
 
 ## Start up production server (uses gunicorn and nginx) build and run docker containers locally
 * can add -D or --daemon command to the below to run in the background
-* accessed from localhost
+* accessed from localhost:4005
 * use `dev.sh` so you don't have to run `python myproject/manage.py collecstatic` manually
 
 ```
