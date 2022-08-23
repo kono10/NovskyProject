@@ -26,7 +26,20 @@ SECRET_KEY = "django-insecure-^^8fqd2v0sa4uc-rp0$(osp)du)z0io6*$y$tk_7%st2b0dr4_
 DEBUG = True
 
 ALLOWED_HOSTS = []
+CONFIGS = {"PROD": {"DEBUG": False}, "DEV": {"DEBUG": True}}
+ENV = os.environ.get("DJANGO_ENV", "DEV")
+CURRENT_CONFIG = CONFIGS.get(ENV)
 
+
+
+if ENV == "PROD":
+    SECRET_KEY = os.environ["SECRET_KEY"]
+else:
+    SECRET_KEY = "testkey123**&&&;lkajsdflkj"
+
+DEBUG = CURRENT_CONFIG["DEBUG"]
+
+ALLOWED_HOSTS = ["web", "localhost"]
 
 # Application definition
 
