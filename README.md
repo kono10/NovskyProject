@@ -1,3 +1,6 @@
+### Django Resources
+* https://realpython.com/deploying-a-django-app-and-postgresql-to-aws-elastic-beanstalk/#configuring-a-database
+
 ### Development Setup Instructions
 ____
 
