@@ -11,4 +11,4 @@ services:
     image: "novskytech/novskyprojectnginx"
     hostname: nginx
     ports:
-      - '4005:80'
+      - '80:80'
