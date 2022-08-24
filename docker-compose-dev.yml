@@ -3,8 +3,6 @@ services:
   web:
     build:
       context: ./NovskyProject
-    ports:
-      - '8001:8000'
     environment:
       - SECRET_KEY=testkey
   nginx:
