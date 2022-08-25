@@ -5,11 +5,6 @@ services:
     hostname: web
     environment:
       - SECRET_KEY=foo
-      - PG_NAME=novskyproject
-      - PG_USER=novskyproject
-      - PG_PASSWORD=Chicagobears54*
-      - PG_URL=novskyproject.chkxruukerfq.us-east-2.rds.amazonaws.com
-      - PG_PORT=5432
   nginx:
     depends_on:
       - web
