@@ -13,6 +13,7 @@ script:
   - python NovskyProject/manage.py test visuals
 
 after_success:
+  - python myproject/manage.py collecstatic
   - docker build -t novskytech/novskyproject ./NovskyProject --no-cache
   - docker build -t novskytech/novskyprojectnginx ./nginx --no-cache
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
