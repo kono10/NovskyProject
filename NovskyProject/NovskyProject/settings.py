@@ -85,11 +85,11 @@ WSGI_APPLICATION = "NovskyProject.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": os.environ["PG_NAME"],
-        "USER": os.environ["PG_USER"],
-        "PASSWORD": os.environ["PG_PASSWORD"],
-        "HOST": os.environ["PG_URL"],
-        "PORT": os.environ["PG_PORT"],
+        "NAME": os.environ.get("PG_NAME"),
+        "USER": os.environ.get("PG_USER"),
+        "PASSWORD": os.environ.get("PG_PASSWORD"),
+        "HOST": os.environ.get("PG_URL"),
+        "PORT": os.environ.get("PG_PORT"),
     }
 }
 
