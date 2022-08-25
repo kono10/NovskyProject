@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECURITY WARNING: don't run with debug turned on in production!
 
-CONFIGS = {"PROD": {"DEBUG": False}, "DEV": {"DEBUG": True}}
+CONFIGS = {"PROD": {"DEBUG": True}, "DEV": {"DEBUG": True}}
 ENV = os.environ.get("DJANGO_ENV", "DEV")
 CURRENT_CONFIG = CONFIGS.get(ENV)
 
@@ -81,14 +81,6 @@ WSGI_APPLICATION = "NovskyProject.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
-
 
 DATABASES = {
     "default": {

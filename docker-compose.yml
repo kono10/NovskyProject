@@ -4,11 +4,16 @@ services:
     image: "novskytech/novskyproject"
     hostname: web
     environment:
-      - SECRET_KEY
+      - SECRET_KEY=foo
+      - PG_NAME=novskyproject
+      - PG_USER=novskyproject
+      - PG_PASSWORD
+      - PG_URL
+      - PG_PORT=5432
   nginx:
     depends_on:
       - web
     image: "novskytech/novskyprojectnginx"
     hostname: nginx
     ports:
-      - '80:80'
+      - '4005:80'

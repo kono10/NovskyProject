@@ -12,4 +12,3 @@ services:
       context: ./nginx
     ports:
       - '4005:80'
-# TODO add postgres db
