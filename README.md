@@ -3,6 +3,7 @@
 * https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html
 * https://medium.com/analytics-vidhya/creating-a-django-ci-cd-pipeline-with-travis-ci-and-aws-elasticbeanstalk-b91bfedd144c
 * https://django.how/resources/aws-rds-postgresql-instance-for-django-project/
+* https://levelup.gitconnected.com/how-to-implement-login-logout-and-registration-with-djangos-user-model-59442164db73
 
 ### Development Setup Instructions
 ____
