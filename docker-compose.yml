@@ -4,7 +4,9 @@ services:
     image: "novskytech/novskyproject"
     hostname: web
     environment:
-      - SECRET_KEY=foo
+      - SECRET_KEY
+      - PG_PASSWORD
+      - PG_URL
   nginx:
     depends_on:
       - web

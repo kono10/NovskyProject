@@ -5,6 +5,8 @@ services:
       context: ./NovskyProject
     environment:
       - SECRET_KEY=testkey
+      - PG_PASSWORD
+      - PG_URL
   nginx:
     depends_on:
       - web

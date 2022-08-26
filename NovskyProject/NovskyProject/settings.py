@@ -34,8 +34,8 @@ else:
 
 DEBUG = CURRENT_CONFIG["DEBUG"]
 
-ALLOWED_HOSTS = ["web", "localhost", ]
-CSRF_TRUSTED_ORIGINS =["http://localhost:4005"]
+ALLOWED_HOSTS = ["web", "localhost"]
+# CSRF_TRUSTED_ORIGINS =["http://localhost:4005"]
 
 # Application definition
 
@@ -87,11 +87,11 @@ WSGI_APPLICATION = "NovskyProject.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": os.environ.get("PG_NAME"),
-        "USER": os.environ.get("PG_USER"),
-        "PASSWORD": os.environ.get("PG_PASSWORD"),
-        "HOST": os.environ.get("PG_URL"),
-        "PORT": os.environ.get("PG_PORT"),
+        "NAME": "database1",
+        "USER": "novskyproject",
+        "PASSWORD": os.environ["PG_PASSWORD"],
+        "HOST": os.environ["PG_URL"],
+        "PORT": 5432,
     }
 }
 
@@ -131,6 +131,4 @@ STATIC_URL = "/static/"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-CSRF_COOKIE_SECURE = False
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "http")
+CSRF_TRUSTED_ORIGINS = ["http://localhost:4005"]
