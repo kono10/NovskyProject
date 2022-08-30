@@ -27,6 +27,9 @@ CONFIGS = {"PROD": {"DEBUG": True}, "DEV": {"DEBUG": True}}
 ENV = os.environ.get("DJANGO_ENV", "DEV")
 CURRENT_CONFIG = CONFIGS.get(ENV)
 
+#os.environ['DJANGO_SETTINGS_MODULE'] = 'NovskyProject.settings'
+
+
 if ENV == "PROD":
     SECRET_KEY = os.environ["SECRET_KEY"]
 else:
