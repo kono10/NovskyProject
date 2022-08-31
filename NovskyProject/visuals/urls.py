@@ -11,5 +11,5 @@ app_name = "visuals"
 urlpatterns = [
     path("", views.IndexView.as_view(), name="index"),
     path("<int:pk>/", views.DetailView.as_view(), name="detail"),
-    path("api/", include(router.urls)),
+    path("api/", include(router.urls), name="api"),
 ]
