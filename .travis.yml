@@ -12,6 +12,8 @@ install:
   - pip install -r NovskyProject/requirements.txt
 
 script:
+  - python NovskyProject/manage.py makemigrations
+  - python NovskyProject/manage.py migrate
   - python NovskyProject/manage.py test visuals
 
 after_success:
