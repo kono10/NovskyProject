@@ -12,9 +12,9 @@ install:
   - pip install -r NovskyProject/requirements.txt
 
 script:
-  - python NovskyProject/manage.py makemigrations
-  - python NovskyProject/manage.py migrate
-  - python NovskyProject/manage.py test visuals
+  #- python NovskyProject/manage.py makemigrations
+  #- python NovskyProject/manage.py migrate
+  #- python NovskyProject/manage.py test visuals
 
 after_success:
   - python myproject/manage.py collecstatic
