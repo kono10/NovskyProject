@@ -4,6 +4,7 @@ services:
     image: "novskytech/novskyproject"
     hostname: web
     environment:
+      - DJANGO_ENV
       - SECRET_KEY
       - PG_PASSWORD
       - PG_URL

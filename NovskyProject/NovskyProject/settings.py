@@ -22,9 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECURITY WARNING: don't run with debug turned on in production!
-
-CONFIGS = {"PROD": {"DEBUG": True}, "DEV": {"DEBUG": True}}
 ENV = os.environ.get("DJANGO_ENV", "DEV")
+CONFIGS = {"PROD": {"DEBUG": True}, "DEV": {"DEBUG": True}, "BUILD": {"DEBUG": True}}
 CURRENT_CONFIG = CONFIGS.get(ENV)
 
 if ENV == "PROD":
@@ -35,9 +34,7 @@ else:
 DEBUG = CURRENT_CONFIG["DEBUG"]
 
 ALLOWED_HOSTS = ["web", "localhost"]
-# CSRF_TRUSTED_ORIGINS =["http://localhost:4005"]
 
-# Application definition
 
 INSTALLED_APPS = [
     "visuals.apps.VisualsConfig",
@@ -84,7 +81,6 @@ WSGI_APPLICATION = "NovskyProject.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
@@ -136,6 +132,6 @@ CSRF_TRUSTED_ORIGINS = ["http://localhost:4005", "http://visuals.novskytech.com"
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
 }
