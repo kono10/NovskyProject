@@ -11,6 +11,9 @@ before_install:
 install:
   - pip install -r NovskyProject/requirements.txt
 
+script:
+  - python NovskyProject/manage.py test visuals
+
 after_success:
   - python myproject/manage.py collecstatic
   - docker build -t novskytech/novskyproject ./NovskyProject --no-cache
