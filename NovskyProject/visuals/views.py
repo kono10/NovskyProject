@@ -10,10 +10,11 @@ from rest_framework import viewsets
 class IndexView(generic.ListView):
     template_name = "visuals/index.html"
     context_object_name = "latest_visual_list"
+    paginate_by = 10
 
     def get_queryset(self):
         """Return the last five published questions."""
-        return Visual.objects.order_by("-pub_date")[:5]
+        return Visual.objects.order_by("-pub_date")
 
 
 class DetailView(generic.DetailView):
