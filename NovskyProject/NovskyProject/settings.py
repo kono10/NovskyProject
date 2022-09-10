@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECURITY WARNING: don't run with debug turned on in production!
 ENV = os.environ.get("DJANGO_ENV", "DEV")
-CONFIGS = {"PROD": {"DEBUG": False}, "DEV": {"DEBUG": True}, "BUILD": {"DEBUG": True}}
+CONFIGS = {"PROD": {"DEBUG": True}, "DEV": {"DEBUG": True}, "BUILD": {"DEBUG": True}}
 CURRENT_CONFIG = CONFIGS.get(ENV)
 
 if ENV == "PROD":

@@ -15,9 +15,11 @@
 			<div class="container">
 				<div id="vis"></div>
 			</div>
+			{% if visual.visual_description %}
 			<div style="color:grey; padding:5px; font-size:25px;"> 
 				<i> Chart Description: {{ visual.viz_description }} </i>
 			</div>
+			{% endif %}
 		</body>
 		<script type="text/javascript">
 			var yourVlSpec = JSON.parse("{{visual.body|escapejs}}");
