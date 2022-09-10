@@ -1,14 +1,24 @@
 
+{% load static %}
 {% if visual.viz_type.name == 'HTML'%}
 		{{visual.body | safe}}
 {% elif visual.viz_type.name == 'Altair'%}
 		<head>
+				<title>NovskyProject - {{ visual.name }}</title>
+				<link rel="shortcut icon" type="image/png" href="{% static 'favicon.jpeg' %}"/>
 				<script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
 				<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
 				<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
+				<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 		</head>
-		<body style="background:sliver;">
+		<body style="background:{{visual.altair_background_color}};">
+			<div class="container">
 				<div id="vis"></div>
+			</div>
+			<div style="color:grey; padding:5px; font-size:25px;"> 
+				<i> Chart Description: {{ visual.viz_description }} </i>
+			</div>
+		</body>
 		<script type="text/javascript">
 			var yourVlSpec = JSON.parse("{{visual.body|escapejs}}");
 			vegaEmbed('#vis', yourVlSpec);

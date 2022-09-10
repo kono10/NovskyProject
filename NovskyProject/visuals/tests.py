@@ -8,17 +8,23 @@ import json
 class TestViewRenders(TestCase):
     @classmethod
     def setUpTestData(cls):
-        vt = VizType(name="HTML")
+        viz_body = """{"config": 
+                {"view": 
+                    {"continuousWidth": 400, "continuousHeight": 300}, 
+                "axis": {"gridColor": "grey", "gridDash": [6, 4]}, 
+                "axisBottom": {"labelColor": "#c83803", "labelFontSize": 15, "titleColor": "#c83803", "titleFontSize": 17}, 
+                "axisLeft": {"labelColor": "#c83803", "labelFontSize": 17, "titleColor": "#c83803", "titleFontSize": 20}, 
+                "background": "#0B162A", 
+                "legend": {"cornerRadius": 10, "fillColor": "#0B162A", "labelColor": "#c83803", "labelFontSize": 17, "padding": 10, "strokeColor": "gray", "titleColor": "#c83803", "titleFontSize": 17},
+                "title": {"color": "#c83803", "fontSize": 17}}, "hconcat": [{"data": {"name": "data-f4d146561bba45e94a9c9029c2251e67"}}]}"""
+        vt = VizType(name="ALTAIR")
         vt.save()
         t = Tag(name="Python")
         t.save()
         vr = VizResource(name="Google", url="www.google.com")
         vt.save()
         viz = Visual.objects.create(
-            name="testViz",
-            viz_type=vt,
-            body="<h1> this is a viz </h1>",
-            pub_date=dt.now(),
+            name="testViz", viz_type=vt, body=viz_body, pub_date=dt.now(),
         )
         viz.save()
         cls.viz = viz
@@ -38,6 +44,10 @@ class TestViewRenders(TestCase):
         response = self.client.get(reverse("visuals:detail", args={self.viz.pk}))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context["visual"].name, "testViz")
+
+    def test_detail_styles(self):
+        self.assertEqual(self.viz.altair_background_color, "#0B162A")
+        self.assertEqual(self.viz.altair_font_color, "#c83803")
 
     def test_api_get(self):
         """
