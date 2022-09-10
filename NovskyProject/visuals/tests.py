@@ -47,7 +47,7 @@ class TestViewRenders(TestCase):
 
     def test_detail_styles(self):
         self.assertEqual(self.viz.altair_background_color, "#0B162A")
-        self.assertEqual(self.viz.altair_font, "#c83803")
+        self.assertEqual(self.viz.altair_font_color, "#c83803")
 
     def test_api_get(self):
         """

@@ -34,6 +34,7 @@ class Visual(models.Model):
     )
     body = models.TextField(help_text="should be javascript or html")
     summary = models.TextField(blank=True)
+    viz_description = models.CharField(max_length=400, blank=True)
     pub_date = models.DateTimeField("date published")
     tags = models.ManyToManyField(Tag, related_name="tag")
     viz_resources = models.ForeignKey(
@@ -60,7 +61,7 @@ class Visual(models.Model):
         )
 
     @property
-    def altair_font(self):
+    def altair_font_color(self):
         return (
             self.altair_json.get("config").get("title").get("color")
             if self.viz_type.name.upper() == "ALTAIR"

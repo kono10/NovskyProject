@@ -1,8 +1,7 @@
-body {background:#0B162A;}
-
 .container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	height:100%;
+    flex-flow: column;
 }
