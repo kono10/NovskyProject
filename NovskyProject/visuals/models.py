@@ -34,7 +34,7 @@ class Visual(models.Model):
     )
     body = models.TextField(help_text="should be javascript or html")
     summary = models.TextField(blank=True)
-    viz_description = models.CharField(max_length=400, blank=True)
+    viz_description = models.CharField(max_length=400, null=True)
     pub_date = models.DateTimeField("date published")
     tags = models.ManyToManyField(Tag, related_name="tag")
     viz_resources = models.ForeignKey(
