@@ -33,8 +33,15 @@ class Visual(models.Model):
         VizType, related_name="type", on_delete=models.CASCADE, null=True, blank=True
     )
     body = models.TextField(help_text="should be javascript or html")
-    summary = models.TextField(blank=True)
-    viz_description = models.CharField(max_length=400, null=True)
+    summary = models.TextField(
+        blank=True, help_text="interesting commentary related to the viz"
+    )
+    viz_description = models.CharField(
+        max_length=400,
+        null=True,
+        blank=True,
+        help_text="help explain the viz iteself, ie x axis represents ...",
+    )
     pub_date = models.DateTimeField("date published")
     tags = models.ManyToManyField(Tag, related_name="tag")
     viz_resources = models.ForeignKey(
