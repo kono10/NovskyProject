@@ -14,7 +14,15 @@
 		<body style="background:{{visual.altair_background_color}};">
 			<div class="container">
 				<div id="vis"></div>
+			{% if visual.summary %}
+				<div id="summary" style="border:{{ visual.altair_font_color }}; border-style:solid; border-width:7; background: {{visual.altair_background_color}};"> 
+						<p style="color:white; padding:10px; ">
+						{{ visual.summary|safe }}
+						</p>
+				</div>
+			{% endif %}
 			</div>
+
 			{% if visual.viz_description %}
 				<div style="color:grey; padding:5px; font-size:25px;"> 
 					<i> Chart Description: {{ visual.viz_description }} </i>
