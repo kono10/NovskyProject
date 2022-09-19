@@ -60,7 +60,7 @@ class Visual(models.Model):
         return json.loads(self.body)
 
     @property
-    def altair_background_color(self):
+    def background_color(self):
         return (
             self.altair_json.get("config").get("background")
             if self.viz_type.name.upper() == "ALTAIR"
@@ -68,7 +68,7 @@ class Visual(models.Model):
         )
 
     @property
-    def altair_font_color(self):
+    def font_color(self):
         return (
             self.altair_json.get("config").get("title").get("color")
             if self.viz_type.name.upper() == "ALTAIR"
