@@ -5,3 +5,11 @@
 	height:95%;
     flex-flow: column;
 }
+#summary {
+    color: grey;
+    padding: 5px;
+    font-size: 25px;
+    width: 1556;
+	background: grey;
+    border-radius: 25px;
+}
