@@ -17,8 +17,11 @@ class TestViewRenders(TestCase):
                 "background": "#0B162A", 
                 "legend": {"cornerRadius": 10, "fillColor": "#0B162A", "labelColor": "#c83803", "labelFontSize": 17, "padding": 10, "strokeColor": "gray", "titleColor": "#c83803", "titleFontSize": 17},
                 "title": {"color": "#c83803", "fontSize": 17}}, "hconcat": [{"data": {"name": "data-f4d146561bba45e94a9c9029c2251e67"}}]}"""
-        vt = VizType(name="ALTAIR")
+        viz_body_plotly = """{"data":[{"cells":{"align":["left","center"],"fill":{"color":"#0B162A"},"font":{"color":"white"}}}]}"""
+        vt = VizType(name="Altair")
         vt.save()
+        vtp = VizType(name="Plotly")
+        vtp.save()
         t = Tag(name="Python")
         t.save()
         vr = VizResource(name="Google", url="www.google.com")
@@ -27,7 +30,12 @@ class TestViewRenders(TestCase):
             name="testViz", viz_type=vt, body=viz_body, pub_date=dt.now(),
         )
         viz.save()
+        vizp = Visual.objects.create(
+            name="testVizPlotly", viz_type=vtp, body=viz_body_plotly, pub_date=dt.now(),
+        )
+        vizp.save()
         cls.viz = viz
+        cls.viz_plotly = vizp
 
     def test_index_page_render(self):
         """

@@ -1,4 +1,6 @@
 from django.db import models
+from markdownx.models import MarkdownxField
+from markdownx.utils import markdownify
 import json
 
 
@@ -33,9 +35,7 @@ class Visual(models.Model):
         VizType, related_name="type", on_delete=models.CASCADE, null=True, blank=True
     )
     body = models.TextField(help_text="should be javascript or html")
-    summary = models.TextField(
-        blank=True, help_text="interesting commentary related to the viz"
-    )
+    summary = MarkdownxField(black=True)
     viz_description = models.CharField(
         max_length=400,
         null=True,
@@ -52,25 +52,29 @@ class Visual(models.Model):
         blank=True,
     )
 
+    @property
+    def formatted_markdown(self):
+        return markdownify(self.content)
+
     def __str__(self):
         return self.name
 
     @property
-    def altair_json(self) -> str:
+    def viz_json(self) -> str:
         return json.loads(self.body)
 
     @property
     def background_color(self):
-        return (
-            self.altair_json.get("config").get("background")
-            if self.viz_type.name.upper() == "ALTAIR"
-            else None
-        )
+        if self.viz_type.name.upper() == "ALTAIR":
+            return self.viz_json.get("config").get("background")
+        if self.viz_type.name.upper() == "PLOTLY":
+            return self.viz_json.get("data")[0].get("cells").get("fill").get("color")
+        return "grey"
 
     @property
     def font_color(self):
-        return (
-            self.altair_json.get("config").get("title").get("color")
-            if self.viz_type.name.upper() == "ALTAIR"
-            else None
-        )
+        if self.viz_type.name.upper() == "ALTAIR":
+            return self.altair_json.get("config").get("title").get("color")
+        if self.viz_type.name.upper() == "PLOTLY":
+            return self.viz_json.get("data")[0].get("cells").get("font").get("color")
+        return "black"
