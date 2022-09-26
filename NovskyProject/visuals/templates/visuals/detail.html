@@ -14,6 +14,13 @@
 		<body style="background:{{visual.background_color}};">
 		<div class="container">
 				<div id="vis"></div>
+		{% if visual.summary %}
+				<div id="summary" style="border:{{ visual.font_color }}; border-style:solid; border-width:7; background: {{visual.background_color}};"> 
+						<p style="padding:10px; ">
+						{{ visual.formatted_markdown|safe }}
+						</p>
+				</div>
+		{% endif %}
 		</div>
 		<script type="text/javascript">
 				var yourVlSpec = JSON.parse("{{visual.body|escapejs}}");
@@ -35,13 +42,6 @@
 {% else %}
 		<h1> ERROR DO NOT RECOGNIZE {{ visual.viz_type.name }}</h1>
 {% endif %}
-	{% comment %}{% if visual.summary %}{% endcomment %}
-		{% comment %}<div id="summary" style="border:{{ visual.font_color }}; border-style:solid; border-width:7; background: {{visual.background_color}};"> {% endcomment %}
-				{% comment %}<p style="color:white; padding:10px; ">{% endcomment %}
-				{% comment %}{{ visual.summary|safe }}{% endcomment %}
-				{% comment %}</p>{% endcomment %}
-		{% comment %}</div>{% endcomment %}
-	{% comment %}{% endif %}{% endcomment %}
 	{% if visual.viz_description %}
 		<div style="color:grey; padding:5px; font-size:25px;"> 
 			<i> Chart Description: {{ visual.viz_description }} </i>

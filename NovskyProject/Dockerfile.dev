@@ -1,6 +1,8 @@
-FROM python:3.9
+FROM python:3.6
 WORKDIR /usr/src/app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
+ENV PG_PASSWORD=Depauwtigers10*
+ENV PG_URL=database1.chkxruukerfq.us-east-2.rds.amazonaws.com
 COPY . .
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

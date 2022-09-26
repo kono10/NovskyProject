@@ -54,7 +54,7 @@ class Visual(models.Model):
 
     @property
     def formatted_markdown(self):
-        return markdownify(self.content)
+        return markdownify(self.summary)
 
     def __str__(self):
         return self.name
