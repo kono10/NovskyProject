@@ -43,7 +43,7 @@ class TestViewRenders(TestCase):
         """
         response = self.client.get(reverse("visuals:index"))
         self.assertEqual(response.status_code, 200)
-        self.assertQuerysetEqual(response.context["latest_visual_list"], [self.viz])
+        self.assertQuerysetEqual(response.context["latest_visual_list"], [self.viz_plotly, self.viz])
 
     def test_detail_page_render(self):
         """
@@ -56,6 +56,8 @@ class TestViewRenders(TestCase):
     def test_detail_styles(self):
         self.assertEqual(self.viz.background_color, "#0B162A")
         self.assertEqual(self.viz.font_color, "#c83803")
+        self.assertEqual(self.viz_plotly.background_color, "#0B162A")
+        self.assertEqual(self.viz_plotly.font_color, "white")
 
     def test_api_get(self):
         """

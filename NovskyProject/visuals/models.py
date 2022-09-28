@@ -35,7 +35,7 @@ class Visual(models.Model):
         VizType, related_name="type", on_delete=models.CASCADE, null=True, blank=True
     )
     body = models.TextField(help_text="should be javascript or html")
-    summary = MarkdownxField(black=True)
+    summary = MarkdownxField(blank=True)
     viz_description = models.CharField(
         max_length=400,
         null=True,
@@ -54,7 +54,7 @@ class Visual(models.Model):
 
     @property
     def formatted_markdown(self):
-        return markdownify(self.content)
+        return markdownify(self.summary)
 
     def __str__(self):
         return self.name
@@ -74,7 +74,7 @@ class Visual(models.Model):
     @property
     def font_color(self):
         if self.viz_type.name.upper() == "ALTAIR":
-            return self.altair_json.get("config").get("title").get("color")
+            return self.viz_json.get("config").get("title").get("color")
         if self.viz_type.name.upper() == "PLOTLY":
             return self.viz_json.get("data")[0].get("cells").get("font").get("color")
         return "black"
