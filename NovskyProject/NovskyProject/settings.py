@@ -90,6 +90,7 @@ DATABASES = {
         "PASSWORD": os.environ["PG_PASSWORD"],
         "HOST": os.environ["PG_URL"],
         "PORT": 5432,
+        "TEST":{"NAME":f"testdb_{dt.now()}"}
     }
 }
 
