@@ -65,16 +65,24 @@ class Visual(models.Model):
 
     @property
     def background_color(self):
-        if self.viz_type.name.upper() == "ALTAIR":
-            return self.viz_json.get("config").get("background")
-        if self.viz_type.name.upper() == "PLOTLY":
-            return self.viz_json.get("data")[0].get("cells").get("fill").get("color")
-        return "grey"
+        try:
+            if self.viz_type.name.upper() == "ALTAIR":
+                return self.viz_json.get("config").get("background")
+            if self.viz_type.name.upper() == "PLOTLY":
+                return (
+                    self.viz_json.get("data")[2].get("cells").get("fill").get("color")
+                )
+        except:
+            return "grey"
 
     @property
     def font_color(self):
-        if self.viz_type.name.upper() == "ALTAIR":
-            return self.viz_json.get("config").get("title").get("color")
-        if self.viz_type.name.upper() == "PLOTLY":
-            return self.viz_json.get("data")[0].get("cells").get("font").get("color")
-        return "black"
+        try:
+            if self.viz_type.name.upper() == "ALTAIR":
+                return self.viz_json.get("config").get("title").get("color")
+            if self.viz_type.name.upper() == "PLOTLY":
+                return (
+                    self.viz_json.get("data")[0].get("cells").get("font").get("color")
+                )
+        except:
+            return "black"
