@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from datetime import datetime as dt
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -90,7 +91,7 @@ DATABASES = {
         "PASSWORD": os.environ["PG_PASSWORD"],
         "HOST": os.environ["PG_URL"],
         "PORT": 5432,
-        "TEST":{"NAME":f"testdb_{dt.now()}"}
+        "TEST": {"NAME": f"testdb_{dt.now()}"},
     }
 }
 

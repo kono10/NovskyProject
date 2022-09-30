@@ -43,7 +43,9 @@ class TestViewRenders(TestCase):
         """
         response = self.client.get(reverse("visuals:index"))
         self.assertEqual(response.status_code, 200)
-        self.assertQuerysetEqual(response.context["latest_visual_list"], [self.viz_plotly, self.viz])
+        self.assertQuerysetEqual(
+            response.context["latest_visual_list"], [self.viz_plotly, self.viz]
+        )
 
     def test_detail_page_render(self):
         """
