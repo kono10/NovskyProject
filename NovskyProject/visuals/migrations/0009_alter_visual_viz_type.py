@@ -7,13 +7,19 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('visuals', '0008_vizresource_viztype_remove_visual_resources_and_more'),
+        ("visuals", "0008_vizresource_viztype_remove_visual_resources_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='visual',
-            name='viz_type',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='type', to='visuals.viztype'),
+            model_name="visual",
+            name="viz_type",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="type",
+                to="visuals.viztype",
+            ),
         ),
     ]
