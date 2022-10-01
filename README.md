@@ -54,8 +54,12 @@ Create A User
 ❯ docker-compose -f docker-compose-dev.yml up --build  
 ```
 
+## Start up local django dev server, visit at localhost:8005
+
+
+
 ### File Index
+* docker-compose-test.yml -> run django dev server
 * docker-compose-dev.yml -> test production infrastructure with local docker builds
-* dev.sh -> runs docker-compose.yml and collectstatic
 * docker-compose.yml -> can run production infrastructure locally but pulls docker containers from dockerhub, is the compose file used by AWS
 * Dockerfile.dev -> run Django app locally with Django development server
