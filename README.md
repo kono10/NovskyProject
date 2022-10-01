@@ -48,29 +48,19 @@ Create A User
 * accessed from localhost:4005
 * use `dev.sh` so you don't have to run `python myproject/manage.py collecstatic` manually
 
+## Start up local django dev server with local buids, visit at localhost:8005
 ```
-❯ pwd
-~/DjangoElasticBeanstalkTemplate
-
-❯ docker-compose -f docker-compose-dev.yml up --build  
+❯ docker-compose -f docker-compose-test-app.yml up --build  
 ```
-
-## Start up local django dev server, visit at localhost:8005
-
-
 ## Run Test in Docker Env 
-
-
 ```
-❯ pwd
-/Users/jkonovsky/development/NovskyProject/NovskyProject
 ❯ docker compose -f docker-compose-run-test-locally.yml up --build
 ```
-
 * eliminates the need to have a remote db connection or a python virtualenv
+* if you do want to run tests with the remote prod db just update DJANGO_ENV to PROD in docker-compose-run-test-locally.ym
 
 ### File Index
-* docker-compose-test.yml -> run django dev server
-* docker-compose-dev.yml -> test production infrastructure with local docker builds
-* docker-compose.yml -> can run production infrastructure locally but pulls docker containers from dockerhub, is the compose file used by AWS
-* Dockerfile.dev -> run Django app locally with Django development server
+* docker-compose-run-test-locally.yml -> will run unit tests in django locally in a docker environment, is convenient bc you don't need a python virtualenv
+* docker-compose-test-app.yml -> run django dev server (python manage.py runserver) in docker env (i.e. without a python virtualenv) using the remote db or a local sql lite db, depending on the DJANGO_ENV
+* docker-compose-dev-app.yml -> test production infrastructure with local docker builds
+* docker-compose.yml -> can run production infrastructure locally (pulls images dockerhub), is the compose file used by AWS
