@@ -1,3 +1,4 @@
+# local build uses nginx and gunicorn
 version: '3'
 services:
   web:
