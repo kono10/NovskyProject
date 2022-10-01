@@ -31,26 +31,16 @@ Setup Django Db
 Create A User
 `python manage.py createsuperuser`
 
-
-## Start up the django docker development server for local testing
-* accessed from localhost:8001
-```
-❯ pwd
-~/DjangoElasticBeanstalkTemplate/myproject
-
-❯ docker build -f Dockerfile.dev -t djangodev .
-
-❯ docker run -p 8001:8000 djangodev
-```
-
 ## Start up production server (uses gunicorn and nginx) build and run docker containers locally
 * can add -D or --daemon command to the below to run in the background
-* accessed from localhost:4005
-* use `dev.sh` so you don't have to run `python myproject/manage.py collecstatic` manually
+* accessed from localhost
+```
+❯ docker compose -f docker-compose.yml up --build
+```
 
 ## Start up local django dev server with local buids, visit at localhost:8005
 ```
-❯ docker-compose -f docker-compose-test-app.yml up --build  
+❯ docker-compose -f docker-compose-test-project.yml up --build  
 ```
 ## Run Test in Docker Env 
 ```
