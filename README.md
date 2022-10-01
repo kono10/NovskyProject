@@ -58,6 +58,16 @@ Create A User
 ## Start up local django dev server, visit at localhost:8005
 
 
+## Run Test in Docker Env 
+
+
+```
+❯ pwd
+/Users/jkonovsky/development/NovskyProject/NovskyProject
+❯ docker compose -f docker-compose-run-test-locally.yml up --build
+```
+
+* eliminates the need to have a remote db connection or a python virtualenv
 
 ### File Index
 * docker-compose-test.yml -> run django dev server
