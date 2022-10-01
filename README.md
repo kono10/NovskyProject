@@ -50,6 +50,7 @@ Create A User
 * if you do want to run tests with the remote prod db just update DJANGO_ENV to PROD in docker-compose-run-test-locally.ym
 
 ### File Index
+* update_local_db.sh -> must have PG_PASSWORD, PG_URL in ENV variables, will take db data from remote db and store it locally to be used for unit tests running tests locally
 * docker-compose-run-test-locally.yml -> will run unit tests in django locally in a docker environment, is convenient bc you don't need a python virtualenv
 * docker-compose-test-app.yml -> run django dev server (python manage.py runserver) in docker env (i.e. without a python virtualenv) using the remote db or a local sql lite db, depending on the DJANGO_ENV
 * docker-compose-dev-app.yml -> test production infrastructure with local docker builds
