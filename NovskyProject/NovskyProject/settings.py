@@ -24,7 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECURITY WARNING: don't run with debug turned on in production!
 ENV = os.environ.get("DJANGO_ENV", "DEV")
-CONFIGS = {"PROD": {"DEBUG": True, "USE_LOCAL_DB": False}, "DEV": {"DEBUG": True, "USE_LOCAL_DB":True}, "BUILD": {"DEBUG": True, "USE_LOCAL_DB": True}}
+CONFIGS = {"PROD": {"DEBUG": True, "USE_LOCAL_DB": False, "ENV":"PROD"},
+           "DEV": {"DEBUG": True, "USE_LOCAL_DB":True, "ENV":"DEV"},
+           }
 CURRENT_CONFIG = CONFIGS.get(ENV)
 USE_LOCAL_DB = CURRENT_CONFIG.get("USE_LOCAL_DB", False)
 
@@ -74,6 +76,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "visuals.context_processors.django_settings",
             ],
         },
     },

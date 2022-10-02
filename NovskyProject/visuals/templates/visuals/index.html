@@ -1,6 +1,6 @@
 {% load static %}
 <head>
-  <title>NovskyProject - Visuals</title>
+  <title> {{ DJANGO_SETTINGS.ENV }} - NovskyProject - Visuals</title>
 <link rel="shortcut icon" type="image/png" href="{% static 'favicon.jpeg' %}"/>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +9,15 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body style="padding:10px;">
-<h1> Visuals </h1>
+{% if DJANGO_SETTINGS.ENV != 'PROD' %}
+		<div style="background: #FAF884">
+				<h1> Visuals - {{ DJANGO_SETTINGS.ENV }} </h1>
+				<hr>
+				<p> {{ DJANGO_SETTINGS }} </p>
+		</div>
+{% else %}
+		<h1> Visuals </h1>
+{% endif %}
 <hr>
 <div style="padding:25px; padding-top:0px;">
 {% if latest_visual_list %}
@@ -34,8 +42,6 @@
 			{% endif %}
 		  </ul>
   </nav>
-
-
 {% else %}
     <p>No visual are available.</p>
 {% endif %}
