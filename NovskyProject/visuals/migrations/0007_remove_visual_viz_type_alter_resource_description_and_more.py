@@ -11,7 +11,10 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(model_name="visual", name="viz_type",),
+        migrations.RemoveField(
+            model_name="visual",
+            name="viz_type",
+        ),
         migrations.AlterField(
             model_name="resource",
             name="description",

@@ -6,6 +6,7 @@ from .models import Tag, Visual
 from .serializers import VisualSerializer
 from rest_framework import viewsets
 
+
 class IndexView(generic.ListView):
     template_name = "visuals/index.html"
     context_object_name = "latest_visual_list"

@@ -23,7 +23,7 @@ class Tag(models.Model):
 
 
 class VizResource(models.Model):
-    """ resources use to cite and give credit """
+    """resources use to cite and give credit"""
 
     name = models.CharField(max_length=100)
     url = models.URLField(max_length=400)
@@ -78,7 +78,9 @@ class Visual(models.Model):
                 )
         except Exception as e:
             default_color = "grey"
-            logger.warning(f"{self.viz_type} viz background defaulting to {default_color} - Error: {e}")
+            logger.warning(
+                f"{self.viz_type} viz background defaulting to {default_color} - Error: {e}"
+            )
             return "grey"
 
     @property
@@ -92,5 +94,7 @@ class Visual(models.Model):
                 )
         except Exception as e:
             default_color = "white"
-            logger.warning(f"{self.viz_type} viz font color defaulting to {default_color} - Error: {e}")
+            logger.warning(
+                f"{self.viz_type} viz font color defaulting to {default_color} - Error: {e}"
+            )
             return default_color

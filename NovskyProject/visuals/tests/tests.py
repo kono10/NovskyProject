@@ -7,7 +7,8 @@ import json
 
 
 class TestViewRenders(TestCase):
-    fixtures = ['db.json']
+    fixtures = ["db.json"]
+
     @classmethod
     def setUpTestData(cls):
         cls.all_viz = Visual.objects.order_by("-pub_date")
@@ -21,7 +22,8 @@ class TestViewRenders(TestCase):
         response = self.client.get(reverse("visuals:index"))
         self.assertEqual(response.status_code, 200)
         self.assertQuerysetEqual(
-                response.context["latest_visual_list"], self.all_viz[:IndexView.paginate_by]
+            response.context["latest_visual_list"],
+            self.all_viz[: IndexView.paginate_by],
         )
 
     def test_detail_page_render(self):
@@ -47,4 +49,6 @@ class TestViewRenders(TestCase):
         response = self.client.get("/api/visuals/")
         self.assertEqual(response.status_code, 200)
         json_data = json.loads(response.content)
-        self.assertEqual(json_data["results"][0]["name"], "Chicago Bears Strength of Schedule")
+        self.assertEqual(
+            json_data["results"][0]["name"], "Chicago Bears Strength of Schedule"
+        )

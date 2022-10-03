@@ -24,9 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECURITY WARNING: don't run with debug turned on in production!
 ENV = os.environ.get("DJANGO_ENV", "DEV")
-CONFIGS = {"PROD": {"DEBUG": True, "USE_LOCAL_DB": False, "ENV":"PROD"},
-           "DEV": {"DEBUG": True, "USE_LOCAL_DB":True, "ENV":"DEV"},
-           }
+CONFIGS = {
+    "PROD": {"DEBUG": True, "USE_LOCAL_DB": False, "ENV": "PROD"},
+    "DEV": {"DEBUG": True, "USE_LOCAL_DB": True, "ENV": "DEV"},
+}
 CURRENT_CONFIG = CONFIGS.get(ENV)
 USE_LOCAL_DB = CURRENT_CONFIG.get("USE_LOCAL_DB", False)
 
@@ -115,9 +116,15 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    },
 ]
 
 

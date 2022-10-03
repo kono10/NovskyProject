@@ -11,9 +11,14 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RenameField(
-            model_name="visual", old_name="visual_name", new_name="name",
+            model_name="visual",
+            old_name="visual_name",
+            new_name="name",
         ),
-        migrations.RemoveField(model_name="visual", name="visual_body",),
+        migrations.RemoveField(
+            model_name="visual",
+            name="visual_body",
+        ),
         migrations.AddField(
             model_name="visual",
             name="body",
