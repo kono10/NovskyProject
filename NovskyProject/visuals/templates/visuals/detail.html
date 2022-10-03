@@ -4,7 +4,11 @@
 		{{visual.body | safe}}
 {% elif visual.viz_type.name == 'Altair' %}
 		<head>
-				<title>NovskyProject - {{ visual.name }}</title>
+				{% if DJANGO_SETTINGS.ENV != 'PROD' %}
+						<title> {{ DJANGO_SETTINGS.ENV }} - NovskyProject - {{ visual.name }}</title>
+				{% else %}
+						<title>NovskyProject - {{ visual.name }}</title>
+				{% endif %}
 				<link rel="shortcut icon" type="image/png" href="{% static 'favicon.jpeg' %}"/>
 				<script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
 				<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>

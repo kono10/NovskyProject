@@ -1,0 +1,17 @@
+# local build uses django dev server
+# should be able to run this in any environment
+# don't need to have a local virtual env
+version: '3'
+services:
+  web:
+    build:
+      context: ./NovskyProject
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./NovskyProject:/django_project
+    environment:
+      - SECRET_KEY=testkey
+      - PG_PASSWORD
+      - PG_URL
+    ports:
+      - '8005:8000'

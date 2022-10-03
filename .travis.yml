@@ -12,6 +12,9 @@ install:
   - pip install -r NovskyProject/requirements.txt
 
 script:
+  - python NovskyProject/manage.py makemigrations
+  - python NovskyProject/manage.py migrate
+  - python NovskyProject/manage.py loaddata NovskyProject/visuals/fixtures/db.json
   - python NovskyProject/manage.py test
 
 after_success:

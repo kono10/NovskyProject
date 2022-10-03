@@ -1,0 +1,17 @@
+# local build uses django dev server
+# should be able to run this in any environment
+version: '3'
+services:
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/django_project
+    environment:
+      - SECRET_KEY=testkey
+      - DJANGO_ENV=DEV
+      # don't need the user/password if dev
+      # - PG_PASSWORD
+      # - PG_URL
+    command: ["python", "manage.py", "test", "-v", "1"]
