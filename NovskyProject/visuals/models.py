@@ -2,6 +2,10 @@ from django.db import models
 from markdownx.models import MarkdownxField
 from markdownx.utils import markdownify
 import json
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.WARNING)
 
 
 class VizType(models.Model):
@@ -72,7 +76,9 @@ class Visual(models.Model):
                 return (
                     self.viz_json.get("data")[2].get("cells").get("fill").get("color")
                 )
-        except:
+        except Exception as e:
+            default_color = "grey"
+            logger.warning(f"{self.viz_type} viz background defaulting to {default_color} - Error: {e}")
             return "grey"
 
     @property
@@ -84,5 +90,7 @@ class Visual(models.Model):
                 return (
                     self.viz_json.get("data")[0].get("cells").get("font").get("color")
                 )
-        except:
-            return "black"
+        except Exception as e:
+            default_color = "white"
+            logger.warning(f"{self.viz_type} viz font color defaulting to {default_color} - Error: {e}")
+            return default_color
