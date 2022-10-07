@@ -1,17 +1,15 @@
-
-
 {% load staticfiles %}
-
 <!DOCTYPE html>
 <html>
-<head>
-    <title>My Project</title>
-</head>
-<body>
-{% block content %}{% endblock %}
-</body>
+		<head>
+				<link rel="stylesheet" href="style.css">
+				<title>{% block title %} {{ DJANGO_SETTINGS.ENV }} - NovskyProject - Visuals {% endblock %}</title>
+				<link rel="shortcut icon" type="image/png" href="{% static 'favicon.jpeg' %}"/>
+				{% block script %} 
+						<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+						<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+						<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+				{% endblock script %} 
+		</head>
+				{% block content %}{% endblock content %}
 </html>
-
-<head>
-  <title>NovskyProject - Visuals</title>
-<link rel="shortcut icon" type="image/png" href="{% static 'favicon.jpeg' %}"/>

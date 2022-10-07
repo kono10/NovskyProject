@@ -1,49 +1,42 @@
-{% load static %}
-<head>
-  <title> {{ DJANGO_SETTINGS.ENV }} - NovskyProject - Visuals</title>
-<link rel="shortcut icon" type="image/png" href="{% static 'favicon.jpeg' %}"/>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
+
+{% block content %}
 <body style="padding:10px;">
-{% if DJANGO_SETTINGS.ENV != 'PROD' %}
-		<div style="background: #FAF884">
-				<h1> Visuals - {{ DJANGO_SETTINGS.ENV }} </h1>
-				<hr>
-				<p> {{ DJANGO_SETTINGS }} </p>
+		{% if DJANGO_SETTINGS.ENV != 'PROD' %}
+				<div style="background: #FAF884">
+						<h1> Visuals - {{ DJANGO_SETTINGS.ENV }} </h1>
+						<hr>
+						<p> {{ DJANGO_SETTINGS }} </p>
+				</div>
+		{% else %}
+				<h1> Visuals </h1>
+		{% endif %}
+		<hr>
+		<div style="padding:25px; padding-top:0px;">
+		{% if latest_visual_list %}
+			{% for visual in latest_visual_list %}
+			<h3>
+				<a href="{% url 'visuals:detail' visual.id %}" style="text-decoration: solid; color:black;">{{ visual.name }}</a>
+			</h3>
+			<p>
+			Tags:
+				{% for tag in visual.tags.all %}
+						<span class="badge">{{ tag }}</span>
+				{% endfor %}
+			</p>
+			{% endfor %}
+		  <nav aria-label="Page navigation conatiner"></nav>
+				  <ul class="pagination justify-content-center">
+					{% if page_obj.has_previous %}
+					<li><a href="?page={{ page_obj.previous_page_number }}" class="page-link" style="color:black;">&laquo; PREV </a></li>
+					{% endif %}
+					{% if page_obj.has_next %}
+					<li><a href="?page={{ page_obj.next_page_number }}" class="page-link" style="color:black;"> NEXT &raquo;</a></li>
+					{% endif %}
+				  </ul>
+		  </nav>
+		{% else %}
+			<p>No visual are available.</p>
+		{% endif %}
 		</div>
-{% else %}
-		<h1> Visuals </h1>
-{% endif %}
-<hr>
-<div style="padding:25px; padding-top:0px;">
-{% if latest_visual_list %}
-    {% for visual in latest_visual_list %}
-	<h3>
-		<a href="{% url 'visuals:detail' visual.id %}" style="text-decoration: solid; color:black;">{{ visual.name }}</a>
-	</h3>
-	<p>
-	Tags:
-		{% for tag in visual.tags.all %}
-				<span class="badge">{{ tag }}</span>
-		{% endfor %}
-	</p>
-    {% endfor %}
-  <nav aria-label="Page navigation conatiner"></nav>
-		  <ul class="pagination justify-content-center">
-			{% if page_obj.has_previous %}
-			<li><a href="?page={{ page_obj.previous_page_number }}" class="page-link" style="color:black;">&laquo; PREV </a></li>
-			{% endif %}
-			{% if page_obj.has_next %}
-			<li><a href="?page={{ page_obj.next_page_number }}" class="page-link" style="color:black;"> NEXT &raquo;</a></li>
-			{% endif %}
-		  </ul>
-  </nav>
-{% else %}
-    <p>No visual are available.</p>
-{% endif %}
-</div>
 <body>
+{% endblock content %}
