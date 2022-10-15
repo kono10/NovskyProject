@@ -1,15 +1,15 @@
 .container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height:95%;
-    flex-flow: column;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height:95%;
+		flex-flow: column;
 }
 #summary {
-    color: grey;
-    padding: 5px;
-    font-size: 25px;
-    width: 1556;
-	background: grey;
-    border-radius: 25px;
+		padding: 15px;
+		font-size: 25px;
+		width: 1556;
+		border-style:solid; 
+		border-width:7;
+		border-radius: 25px;
 }
