@@ -1,46 +1,48 @@
+{% extends "visuals/base.html" %}
 {% load static %}
-{% if visual.viz_type.name == 'HTML'%}
-		{{visual.body | safe}}
-{% else %}
-		<head>
-		{% if DJANGO_SETTINGS.ENV != 'PROD' %}
-				<title> {{ DJANGO_SETTINGS.ENV }} - NovskyProject - {{ visual.name }}</title>
+{% block script %}
+		{% if visual.viz_type.name == 'Altair' %}
+				<script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+				<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
+				<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
+		{% elif visual.viz_type.name == 'Plotly' %}
+				<script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
 		{% else %}
-				<title>NovskyProject - {{ visual.name }}</title>
 		{% endif %}
-		<link rel="shortcut icon" type="image/png" href="{% static 'favicon.jpeg' %}"/>
-		<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-
-		<script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
-		<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
-		<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
-
-		<script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
-
-		</head>
+{% endblock script %}
+{% block content %}
 		<body style="background:{{visual.background_color}};">
-		<div class="container">
 				{% if visual.viz_type.name == 'Altair' %}
-						<div id="vis_altair"></div>
-						<script type="text/javascript">
-								var yourVlSpec = JSON.parse("{{visual.body|escapejs}}");
-								vegaEmbed('#vis_altair', yourVlSpec);
-						</script>
+						<div class="altair_container">
+								<div id="vis_altair"></div>
+								<script type="text/javascript">
+										var yourVlSpec = JSON.parse("{{visual.body|escapejs}}");
+										vegaEmbed('#vis_altair', yourVlSpec);
+								</script>
+								{% if visual.summary %}
+										<div id="summary" style="background: white; border-color:{{ visual.font_color }};"> 
+												{{ visual.formatted_markdown|safe }}
+										</div>
+								{% endif %}
+						</div>
 				{% elif visual.viz_type.name == 'Plotly' %}
-						<div id="vis_plotly"></div>
-						<script>
-								var jsonData = JSON.parse("{{visual.body|escapejs}}");
-								Plotly.newPlot("vis_plotly", jsonData)
-						</script>
+						<div class="plotly_container">
+								<div id="vis_plotly"></div>
+								<script>
+										var jsonData = JSON.parse("{{visual.body|escapejs}}");
+										Plotly.newPlot("vis_plotly", jsonData)
+								</script>
+								{% if visual.summary %}
+										<div id="summary" style="background: white; border-color:{{ visual.font_color }};"> 
+												{{ visual.formatted_markdown|safe }}
+										</div>
+								{% endif %}
+						</div>
+				{% elif visual.viz_type.name == 'HTML' %}
+						{{visual.body | safe}}
 				{% else %}
 						<h1> ERROR DO NOT RECOGNIZE {{ visual.viz_type.name }}</h1>
 				{% endif %}
-				{% if visual.summary %}
-						<div id="summary" style="background: white; border-color:{{ visual.font_color }};"> 
-								{{ visual.formatted_markdown|safe }}
-						</div>
-				{% endif %}
-		</div>
 		{% if visual.viz_description %}
 				<div style="color:grey; padding:5px; font-size:25px;"> 
 						<i> Chart Description: {{ visual.viz_description }} </i>
@@ -53,4 +55,4 @@
 		{% endif %}
 		{% comment %}{{ visual.js_post_load|safe }}{% endcomment %}
 		</body>
-{% endif %}
+{% endblock content %}

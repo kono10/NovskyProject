@@ -1,14 +1,14 @@
 {% load static %}
 <head>
-		<link rel="stylesheet" href="style.css">
-				{% if DJANGO_SETTINGS.ENV != 'PROD' %}
-						<title> {{ DJANGO_SETTINGS.ENV }} - NovskyProject - {{ visual.name }}</title>
-				{% else %}
-						<title>NovskyProject - {{ visual.name }}</title>
-				{% endif %}
+		{% if DJANGO_SETTINGS.ENV != 'PROD' %}
+				<title> {{ DJANGO_SETTINGS.ENV }} - NovskyTech - {{ visual.name }}</title>
+		{% else %}
+				<title>NovskyTech - {{ visual.name }}</title>
+		{% endif %}
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 		<link rel="shortcut icon" type="image/png" href="{% static 'favicon.jpeg' %}"/>
+		<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 		{% block script %} 
-				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 				<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 		{% endblock script %} 
