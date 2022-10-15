@@ -43,13 +43,8 @@ class Migration(migrations.Migration):
                 ("name", models.CharField(max_length=50)),
             ],
         ),
-        migrations.RemoveField(
-            model_name="visual",
-            name="resources",
-        ),
-        migrations.DeleteModel(
-            name="Resource",
-        ),
+        migrations.RemoveField(model_name="visual", name="resources",),
+        migrations.DeleteModel(name="Resource",),
         migrations.AddField(
             model_name="visual",
             name="viz_resources",
