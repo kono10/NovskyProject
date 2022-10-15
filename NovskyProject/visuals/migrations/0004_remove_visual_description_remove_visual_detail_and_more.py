@@ -10,17 +10,9 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name="visual",
-            name="description",
-        ),
-        migrations.RemoveField(
-            model_name="visual",
-            name="detail",
-        ),
+        migrations.RemoveField(model_name="visual", name="description",),
+        migrations.RemoveField(model_name="visual", name="detail",),
         migrations.AddField(
-            model_name="visual",
-            name="summary",
-            field=models.TextField(blank=True),
+            model_name="visual", name="summary", field=models.TextField(blank=True),
         ),
     ]

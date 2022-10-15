@@ -16,8 +16,6 @@ class Migration(migrations.Migration):
             field=models.CharField(blank=True, max_length=200),
         ),
         migrations.AlterField(
-            model_name="resource",
-            name="name",
-            field=models.CharField(max_length=100),
+            model_name="resource", name="name", field=models.CharField(max_length=100),
         ),
     ]
