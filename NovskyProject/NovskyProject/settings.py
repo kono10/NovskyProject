@@ -38,7 +38,7 @@ else:
 
 DEBUG = CURRENT_CONFIG["DEBUG"]
 
-ALLOWED_HOSTS = ["web", "localhost"]
+ALLOWED_HOSTS = ["web", "localhost", "visuals.novskytech.com"]
 
 
 INSTALLED_APPS = [
