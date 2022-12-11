@@ -4,6 +4,7 @@ from visuals.views import IndexView
 from django.urls import reverse
 from datetime import datetime as dt
 import json
+import logging
 
 
 class TestViewRenders(TestCase):
@@ -12,6 +13,8 @@ class TestViewRenders(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.all_viz = Visual.objects.order_by("-pub_date")
+        logging.warning(f"Loading {len(cls.all_viz)} records from test db")
+        logging.warning(f"First Record ==> {cls.all_viz[0]} ")
         cls.viz_altair = Visual.objects.get(pk=1)
         cls.viz_plotly = Visual.objects.get(pk=19)
 
