@@ -8,10 +8,5 @@ services:
       - SECRET_KEY
       - PG_PASSWORD
       - PG_URL
-  nginx:
-    depends_on:
-      - web
-    image: "novskytech/novskyprojectnginx"
-    hostname: nginx
     ports:
-      - '80:80'
+      - '80:8000'

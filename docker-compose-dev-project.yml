@@ -9,10 +9,5 @@ services:
       - PG_PASSWORD
       - PG_URL
       - DJANGO_ENV=DEV
-  nginx:
-    depends_on:
-      - web
-    build:
-      context: ./nginx
     ports:
-      - '4005:80'
+      - '4005:8000'
