@@ -8,6 +8,6 @@ services:
       - SECRET_KEY=testkey
       - PG_PASSWORD
       - PG_URL
-      - DJANGO_ENV=PROD
+      - DJANGO_ENV=DEV
     ports:
       - '4005:8000'
