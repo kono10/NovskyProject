@@ -18,6 +18,9 @@ Install vitualenv
 Create a virtual environment
 `virtualenv djangoEnv -p python3`
 
+Create a python 3.6 env
+`virtualenv --python=python3.6 myvenv`
+
 Activate the environment
 `source djangoEnv/bin/activate`
  
