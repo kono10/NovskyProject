@@ -11,3 +11,4 @@ pytz
 sqlparse
 typing_extensions
 zipp
+whitenoise
