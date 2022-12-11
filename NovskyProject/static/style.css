@@ -1,9 +1,9 @@
 .altair_container {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height:95%;
-		flex-flow: column;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height:95%;
+    flex-flow: column;
 }
 #summary {
 		padding: 15px;

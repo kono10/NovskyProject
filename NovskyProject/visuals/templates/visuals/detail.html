@@ -6,14 +6,15 @@
 				<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
 				<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
 		{% elif visual.viz_type.name == 'Plotly' %}
-				<script src="https://cdn.plot.ly/plotly-2.14.0.min.js"></script>
+				<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 		{% else %}
+
 		{% endif %}
 {% endblock script %}
 {% block content %}
 		<body style="background:{{visual.background_color}};">
 				{% if visual.viz_type.name == 'Altair' %}
-						<div class="altair_container">
+						<div class="altair_container" style="display:flex; justify-content:center; align-items:center; height:95%; flex-flow: column;">
 								<div id="vis_altair"></div>
 								<script type="text/javascript">
 										var yourVlSpec = JSON.parse("{{visual.body|escapejs}}");
@@ -27,11 +28,7 @@
 						</div>
 				{% elif visual.viz_type.name == 'Plotly' %}
 						<div class="plotly_container">
-								<div id="vis_plotly"></div>
-								<script>
-										var jsonData = JSON.parse("{{visual.body|escapejs}}");
-										Plotly.newPlot("vis_plotly", jsonData)
-								</script>
+								{{visual.body|safe}}
 								{% if visual.summary %}
 										<div id="summary" style="background: white; border-color:{{ visual.font_color }};"> 
 												{{ visual.formatted_markdown|safe }}

@@ -79,9 +79,9 @@ class Visual(models.Model):
         except Exception as e:
             default_color = "grey"
             logger.warning(
-                f"{self.viz_type} viz background defaulting to {default_color} - Error: {e}"
+                f"{self.viz_type} viz background defaulting to {default_color} - Warning Message: {e}"
             )
-            return "grey"
+            return default_color
 
     @property
     def font_color(self):
@@ -95,6 +95,6 @@ class Visual(models.Model):
         except Exception as e:
             default_color = "white"
             logger.warning(
-                f"{self.viz_type} viz font color defaulting to {default_color} - Error: {e}"
+                f"{self.viz_type} viz font color defaulting to {default_color} - Warning Message: {e}"
             )
             return default_color
