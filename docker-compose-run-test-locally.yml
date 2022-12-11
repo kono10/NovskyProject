@@ -11,8 +11,4 @@ services:
     environment:
       - SECRET_KEY=testkey
       - DJANGO_ENV=DEV
-      # don't need the user/password if dev
-      # but must make sure local db is up to date``
-      # - PG_PASSWORD
-      # - PG_URL
     command: ["python", "manage.py", "test", "-v", "1"]
